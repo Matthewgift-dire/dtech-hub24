@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+	{% block title %}about{% endblock %}
+	
+  {% block banner %}
+  {% endblock banner %}
+  
+	{% block content %}
+      <!-- about section start --> 
+      <div class="about_section layout_padding mb-5">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-sm-12">
+                  <div class="image_5"><img src="{% static 'images/about-img.png' %}"></div>
+                  <h1 class="about_taital">About Us</h1>
+                  <p class="about_text">Welcome to <em><b>DTech-Hub</b></em>, a Professional Platform. Were we provide you only interesting content, which you will like very much. We're dedicated to providing you the best of Blog content, with a focus on dependability and Tech, crypto, news, trends, etc.</p>
+                 <p class="about_text mt-2">We're working to turn our passion for Blog into a online blooming website. We hope you enjoy our Blog as much as we enjoy offering them to you</p>
+                  <p class="about_text mt-2">We'll keep posting more important posts on our Website for y'all. Please give your support and love.</p>
+                  <p class="about_text mt-2">Thanks For Visiting Our Site <span style="color: blue; font-size: 16px; font-weight: bold; text-align: center;">Have a nice day!</span></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- about section end -->
+{% endblock content %}
+ 
+ {% block tag %}
+ {% endblock tag %}

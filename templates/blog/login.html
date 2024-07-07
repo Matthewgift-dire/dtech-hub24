@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+	{% block header %}
+	{% endblock header %}
+
+  {% block banner %}
+  {% endblock banner %}
+  
+	{% block content %}
+      <!-- contact section start -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="text-indent: 0; border: none; color: #000; font-size: 18px; text-align: center;">1</li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"style="text-indent: 0; border: none; color: #000; font-size: 18px; text-align: center;">2</li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"style="text-indent: 0; border: none; color: #000; font-size: 18px; text-align: center;">3</li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"style="text-indent: 0; border: none; color: #000; font-size: 18px; text-align: center;">4</li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <div class="contact_img"></div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="contact_img"></div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="contact_img"></div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="contact_img"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="mail_section">
+                     <h1 class="contact_taital">Sign In</h1>
+                     <form action="" method="POST">
+                     {% csrf_token %}
+                     {{form.as_p}}
+                     {% if messages %}
+                     <ul class="">
+                     {% for message in messages %}
+                     	<li class="" style="color:red;">{{message}}</li>
+                     {% endfor %}
+                     </ul>	           
+                     {% endif %}
+                     <div class="text-center"><input type="submit" value="Sign In" class='mt-4 btn btn-tertiary btn-lg'></div>
+                     <p class="post_text mt-5"><a href="{% url 'signup' %}">Don't have Account?<br> Create</a></p>
+                     <p class="post_text mt-5 " style="color:aliceblue;"><a href="{% url 'index' %}">Continue reading?<br> Anonymously</a></p>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- contact section end -->
+{% endblock content %}
+ 
+{% block tag %}
+{% endblock tag %}
+
+{% block footer %}
+{% endblock footer %}

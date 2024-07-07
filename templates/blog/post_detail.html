@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block banner %}
+  {% endblock banner %}
+  
+	{% block content %}
+      <!-- blog section start --> 
+      <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-sm-12">
+               <p class="post_text h6"><a href="{% url 'index' %}">Home</a> > <a href="{% url 'post_category' post.post_category %}">{{post.post_category}}</a> >
+               <a href="{% url 'blog_tag' post.tag %}">{{post.tag}}</a></p>
+               <h2 class="most_text">{{post.title |capfirst }}</h2>
+                <p class="post_text">{{post.created_on | date }} | {{ post.read_time }} Min read</p>
+                <p class="post_text mb-4">Author : <a href="{% url 'post_author' post.author %}">{{post.author |capfirst }}</a></p>                
+               <div class="about_img mb-5 image-fluid"><img src="{{post.cover_image}}"></div>                                
+                 {{ post.content | safe }}        
+               </div>
+               {% if request.user.is_authenticated %}
+               <div class="col-lg-4 col-sm-12">
+                  <div class="newsletter_main">
+                     <h1 class="most_text">Leave a comment:</h1>
+                     <form method="post" class="post-form">
+                     {% csrf_token %}
+                    	{{form.as_p}}
+                    	<button type="submit" class="btn btn-tertiary">Submit</button> 
+                     </form>                       
+                  </div>                  
+               </div>
+               {% else %}
+               <div class="col-lg-4 col-sm-12">
+                  <div class="newsletter_main">
+               	<h2 class="most_text"><a href="{% url 'login' %}">Login to comment</a></h2>
+               </div>
+                 </div>
+				{% endif %}
+                           
+               {% if comments %}
+                 <div class="col-lg-4 col-sm-12">
+                  <div class="newsletter_main">
+                     <h1 class="most_text">comments</h1>
+                     {% for comment in comments %}
+                     <div class="recent_box">
+                        <div class="recent_left">
+                        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 20rem;">
+						 <div class="card-body">
+						   <h5 class="card-title">{{comment.author}} said:</h5>
+						   <p class="card-text">{{comment.body}}</p>
+						   <h6 class="card-subtitle mb-2 text-muted">{{comment.created_on | date}}</h6>
+						 </div>
+						</div>
+                        </div>
+                     </div>
+                     {% endfor %}           
+                  </div>                  
+               </div> 
+               {% endif %}
+               
+              {% if related_posts %} 
+               <div class="col-lg-4 col-sm-12">
+                  <div class="newsletter_main">
+                     <h1 class="recent_taital">Related post</h1>
+                     {% for post in related_posts %}
+                     <div class="recent_box">
+                        <div class="recent_left">
+                        <a href="{% url 'post_detail' post.slug %}">
+                           <div class="image_6"><img src="{{post.cover_image}}"></div>
+                        </div>
+                        <div class="recent_right">
+                           <h3 class="consectetur_text">{{post.title}}</h3>
+                           </a>
+                        </div>
+                     </div>
+                     {% endfor %}           
+                  </div>                  
+               </div> 
+               {% endif %}                              
+               
+            </div>
+         </div>
+      </div>
+      <!-- blog section end-->      
+{% endblock content %}

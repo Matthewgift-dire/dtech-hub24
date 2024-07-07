@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block banner %}
+  {% endblock banner %}
+  
+	{% block content %}
+      <!-- blog section start --> 
+      <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+			  <div class="col-lg-4 col-sm-12">
+                  <div class="image_5"><img src="{{author.profile_img}}"></div>
+                  <h1 class="about_taital">{{author.name}}</h1>
+                  <h2 class="consectetur_text">about author</h2>
+                  <p class="about_text">{{author.about_info}}</p>
+                   
+                  <h2 class="consectetur_text mt-4"><a href="{% url 'author_post' author.name %}">See posts by {{author.name}}</a></h2>
+               
+               </div>
+             </div>
+           </div>
+          </div>
+ {% endblock content %}
+ 
+ {% block tag %}
+ {% endblock tag %}

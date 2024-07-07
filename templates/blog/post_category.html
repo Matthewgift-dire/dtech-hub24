@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+	{% block title %}topics, posts, read{% endblock %}
+
+  {% block banner %}
+  {% endblock banner %}
+  
+	{% block content %}
+	{% for post in posts %}
+      <!-- blog section start --> 
+      <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-sm-12">
+               	<h2 class="most_text"><a href="{% url 'post_detail' post.slug %}">{{post.title |capfirst }}</a></h2>
+                  <p class="post_text">Author : <a href="{% url 'post_author' post.author.name %}">{{post.author |capfirst }}</a></p>
+                  <p class="post_text mt-1">{{post.created_on | date }} | {{ post.read_time }} Min read</p>
+                  <p class="post_text mt-1 mb-2">Category : <a href="{% url 'blog_tag' post.tag %}">{{post.tag | capfirst}}</a></p>
+                  <! {% autoescape off %}
+                  {{ post.content | truncatechars:200 }}
+                  {% endautoescape %}
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+      <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-sm-12">
+      		{% include "blog/paginator.html" with page=posts  %}
+      		</div>
+         </div>
+      </div>      		
+      
+ {% endblock content %}

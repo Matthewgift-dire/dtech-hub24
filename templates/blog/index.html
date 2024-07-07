@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+	{% block content %}
+	{% for post in posts %}
+      <!-- blog section start --> 
+      <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-sm-12">
+                  <div class="about_img"><img src="{{post.cover_image}}"></div>
+                  <p class="post_text mt-5">Author : <a href="{% url 'post_author' post.author.name %}">{{post.author |capfirst }}</a></p>
+                  <p class="post_text mt-1">{{post.created_on | date }} | {{ post.read_time }} Min read</p>
+                  <p class="post_text mt-1">Category : <a href="{% url 'blog_tag' post.tag %}">{{post.tag | capfirst}}</a></p>
+                  <h2 class="most_text"><a href="{% url 'post_detail' post.slug %}" >{{post.title |capfirst }}</a></h2>
+                  <! {% autoescape off %}
+                  {{ post.content | truncatechars:200 }}
+                  {% endautoescape %}
+                  <div class="social_icon_main justify-content-end">                   
+                     <div class="read_bt"><a href="{% url 'post_detail' post.slug %}">Read More</a></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+      <!-- blog section end --> 
+      
+      <!-- recent section start --> 
+      <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-sm-12">
+                  <div class="newsletter_main">
+                     <h1 class="recent_taital">Recent post</h1>
+                     {% for post in recent_posts %}
+                     <div class="recent_box">
+                        <div class="recent_left">
+                        <a href="{% url 'post_detail' post.slug %}">
+                           <div class="image_6"><img src="{{post.cover_image}}"></div>
+                        </div>
+                        <div class="recent_right">
+                           <h3 class="consectetur_text">{{post.title}}</h3>
+                           </a>
+                        </div>
+                     </div>
+                     {% endfor %}           
+                  </div>                  
+               </div>
+               <div class="col-lg-4 col-sm-12">
+                  <div class="newsletter_main">
+                     <h1 class="recent_taital">Trends now</h1>
+                     {% for post in trending_posts %}
+                     <div class="recent_box">
+                        <div class="recent_left">
+                        <a href="{% url 'post_detail' post.slug %}">                     
+                           <div class="image_6"><img src="{{post.cover_image}}"></div>
+                        </div>
+                        <div class="recent_right">
+                           <h3 class="consectetur_text">{{post.title}}</h3>
+                       </a>
+                     </div>
+                  </div>
+                  {% endfor %}
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+        <!-- recent section end -->
+	    
+      <!-- newsletter section start --> 
+       <div class="about_section layout_padding">
+         <div class="container">
+            <div class="row">
+               
+               <div class="col-lg-4 col-sm-12">
+                  <div class="about_main">
+                     <h1 class="follow_text">CONNECT & FOLLOW</h1>
+                     <div class="follow_icon">
+                        <ul>
+                           <li><a href="https://www.facebook.com/dirematthew.1"><img src="{% static 'images/fb-icon-1.png' %}"></a></li>
+                           <li><a href="https://x.com/DtechHub24?t=W7IV5CFeBvcI6z3v48HUhQ&s=09"><img src="{% static 'images/twitter-icon-1.png' %}"></a></li>
+                           <li><a href="#"><img src="{% static 'images/linkedin-icon-1.png' %}"></a></li>
+                           <li><a href="#"><img src="{% static 'images/instagram-icon-1.png' %}"></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- newsletter section end -->      
+
+      {% endblock content %}
